@@ -1,5 +1,6 @@
 const greeting=document.querySelector(".greeting")
 const timeElement=document.querySelector(".time-element")
+const scoreElement=document.querySelector(".score-element")
 const quizContainer=document.querySelector(".quiz-container")
 const quizTitle=document.querySelector(".quiz-title")
 const answerContainer=document.querySelector(".answer-container")
@@ -22,6 +23,7 @@ const quizQuestion=[
   },
   // Add more questions as needed
 ];
+var score = 0 
 let time=100
 let timesequence;
 let currentquestion=0
@@ -54,7 +56,17 @@ answerContainer.addEventListener("click", function(event){
 })
 function matchanswer(click){
     const rightanswer=quizQuestion[currentquestion].answer
-    console.log(click,rightanswer)
+    if (click===rightanswer){
+        alert("correct")
+        score++
+        scoreElement.textContent="score: "+score
+
+    }else {
+        alert("incorrect")
+        score--
+        scoreElement.textContent="score: "+score
+
+    }
     currentquestion++
     displayQuiz()
 }
