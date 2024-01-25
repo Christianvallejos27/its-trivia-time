@@ -21,6 +21,14 @@ const quizQuestion=[
     possibleAnswers: ["1960", "1963", "1970", "1985"],
     answer: "1963"
   },
+  {
+    question: "What car brand made the civic?",
+    possibleAnswers: ["Ford", "Kia", "Toyota", "Honda"],
+    answer: "Honda"
+  },
+  
+  
+  
   // Add more questions as needed
 ];
 var score = 0 
@@ -40,6 +48,9 @@ function startTimer(){
 function displayQuiz(){
     greeting.classList.add("hide")
     quizContainer.classList.remove("hide")
+   if(currentquestion>2){
+        endGame()
+    } else {
     quizTitle.textContent=quizQuestion[currentquestion].question
     let options=quizQuestion[currentquestion].possibleAnswers
     let optionslist=""
@@ -47,6 +58,7 @@ function displayQuiz(){
         optionslist += `<button>${options[i]}</button>`
         answerContainer.innerHTML=optionslist
     }
+}
 }
 answerContainer.addEventListener("click", function(event){
     event.preventDefault()
@@ -61,7 +73,7 @@ function matchanswer(click){
         score++
         scoreElement.textContent="score: "+score
 
-    }else {
+    }if (click!==rightanswer){
         alert("incorrect")
         score--
         scoreElement.textContent="score: "+score
@@ -69,6 +81,10 @@ function matchanswer(click){
     }
     currentquestion++
     displayQuiz()
+}
+
+function endGame() {
+    clearTimeout(timesequence)
 }
 
 
